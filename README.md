@@ -60,10 +60,9 @@ app/
     └── lit-card.ts            # slot + DSD デモ（プレゼンテーショナル）
 demo/
 ├── index.html                # 純 HTML 埋め込みデモ（タグだけ / パターン C）
-├── templates/                # DSD 注入用の手書きテンプレート（原本）
-└── dist/                     # 配布物（生成・gitignore）
+└── dist/                     # 配布物（生成・gitignore）。snippets/ に DSD 断片
 scripts/
-└── render-dsd.mts            # @lit-labs/ssr で DSD 断片を注入するビルドスクリプト
+└── render-dsd.mts            # @lit-labs/ssr で DSD 断片を生成するスクリプト
 vite.lib.config.ts             # スタンドアロンバンドルの Vite 設定
 nuxt.config.ts                 # nuxt-ssr-lit の設定
 .npmrc                         # pnpm hoisting の回避設定（後述）
