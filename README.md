@@ -34,6 +34,17 @@ node .output/server/index.mjs   # 本番プレビュー
 
 ブラウザでページのソースを表示すると、`lit-card` / `lit-counter` が `<template shadowrootmode="open">`（DSD）として描画されているのを確認できます。
 
+### 外部サイト（Nuxt 外）への埋め込み
+
+同じコンポーネントを純粋な手書き HTML サイトにも埋め込めます。スタンドアロンバンドルの生成と、既存 HTML への DSD 断片注入に対応しています。
+
+```bash
+pnpm build:demo     # wc.js バンドル + DSD 注入済み HTML を demo/dist/ に生成
+pnpm preview:demo   # ビルドしてローカルサーバーで確認
+```
+
+仕組み・配信パターンの選び方・運用上の懸念点は **[docs/external-embedding.md](docs/external-embedding.md)** を参照してください。
+
 ## ディレクトリ構成
 
 ```
@@ -44,11 +55,21 @@ app/
 ├── plugins/
 │   └── custom-elements.ts     # Web Component の登録（import するだけ）
 └── wc/                        # Lit Web Component の定義
+    ├── index.ts              # スタンドアロン配布バンドルのエントリ（hydration support 込み）
     ├── lit-counter.ts         # hydration デモ（インタラクティブ）
     └── lit-card.ts            # slot + DSD デモ（プレゼンテーショナル）
+demo/
+├── index.html                # 純 HTML 埋め込みデモ（タグだけ / パターン C）
+├── templates/                # DSD 注入用の手書きテンプレート（原本）
+└── dist/                     # 配布物（生成・gitignore）
+scripts/
+└── render-dsd.mts            # @lit-labs/ssr で DSD 断片を注入するビルドスクリプト
+vite.lib.config.ts             # スタンドアロンバンドルの Vite 設定
 nuxt.config.ts                 # nuxt-ssr-lit の設定
 .npmrc                         # pnpm hoisting の回避設定（後述）
 ```
+
+> 外部サイトへの埋め込みの詳細は [docs/external-embedding.md](docs/external-embedding.md) を参照。
 
 ## 仕組み
 

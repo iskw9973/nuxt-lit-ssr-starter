@@ -7,7 +7,11 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "build:wc": "vite build --config vite.lib.config.ts",
+    "build:dsd": "tsx scripts/render-dsd.mts",
+    "build:demo": "pnpm build:wc && pnpm build:dsd",
+    "preview:demo": "pnpm build:demo && pnpm dlx serve demo"
   },
   "dependencies": {
     "lit": "^3.3.3",
@@ -16,9 +20,16 @@
     "vue-router": "^5.1.0"
   },
   "devDependencies": {
-    "nuxt-ssr-lit": "^1.6.32"
+    "@lit-labs/ssr": "^4.1.0",
+    "@lit-labs/ssr-client": "^1.1.8",
+    "nuxt-ssr-lit": "^1.6.32",
+    "tsx": "^4.22.4",
+    "vite": "^8.0.16"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["esbuild", "@parcel/watcher"]
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "@parcel/watcher"
+    ]
   }
 }

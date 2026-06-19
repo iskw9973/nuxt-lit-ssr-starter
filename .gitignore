@@ -6,6 +6,9 @@
 .cache
 dist
 
+# Standalone WC build / DSD 注入の出力（原本は demo/templates/）
+demo/dist
+
 # Node dependencies
 node_modules
 
