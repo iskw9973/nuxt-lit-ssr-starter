@@ -50,8 +50,7 @@ Web Component の表示には独立した 2 つのレイヤーがあります。
 
 ```
 demo/dist/                 # 生成物（gitignore）
-├── wc.js                  # hydration support 入りバンドル
-├── wc.iife.js             # CDN 直読み用（IIFE）
+├── wc.js                  # hydration support 入りバンドル（ES module）
 └── snippets/
     ├── card.html          # <lit-card> の DSD 断片
     └── counter.html       # <lit-counter> の DSD 断片
@@ -76,7 +75,7 @@ demo/dist/                 # 生成物（gitignore）
 
 | コマンド | 内容 |
 |---|---|
-| `pnpm build:wc` | スタンドアロンバンドル（`wc.js` / `wc.iife.js`）を生成 |
+| `pnpm build:wc` | スタンドアロンバンドル（`wc.js`）を生成 |
 | `pnpm build:dsd` | `demo/dist/snippets/*.html` に DSD 断片を生成 |
 | `pnpm build:demo` | 上記 2 つをまとめて実行 |
 | `pnpm preview:demo` | ビルド後ローカルサーバーで確認 |
